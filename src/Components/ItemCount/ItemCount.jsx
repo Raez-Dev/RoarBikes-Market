@@ -7,14 +7,17 @@ import {
     ButtonPlus
 } from './ItemCountCss';
 
-const Index = ({ itemStore = { initial: 0, stock: 0 }, onAddStore = (qty) => { return null } }) => {
+const Index = ({ itemStore = { initial: 0, stock: 0 } }) => {
 
-    const [quantity, setQuantity] = useState(itemStore.initial)
+    const [quantity, setQuantity] = useState(0)
     const [EnablePlus, setEnablePlus] = useState(false)
     const [EnableLess, setEnableLess] = useState(false)
     const [EnableAddCart, setEnableAddCart] = useState(false)
 
     useEffect(() => {
+
+        setQuantity(itemStore.initial)
+
         if (quantity <= 1) {
             setEnableLess(true);
         }

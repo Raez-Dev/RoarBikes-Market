@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ItemColor from '../ItemColor/ItemColor';
 import { ListColorContainer } from './ListColorCss';
 
 const ListColor = ({ listColor = [], orientation = 'row', onColorChange = (item) => { } }) => {
 
-    const [currentColor, setCurrentColor] = useState(listColor[0]);
+    const [currentColor, setCurrentColor] = useState({});
+
+    useEffect(() => {
+        setCurrentColor(listColor[0]);
+    }, []);
 
     const onColorSelect = (item) => {
         onColorChange(item);

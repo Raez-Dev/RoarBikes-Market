@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
 import GlobalStyle from './globalStyles';
+import { Component } from 'react/cjs/react.production.min';
 
 const Layout = ({ itemcount, children }) => {
     return (
@@ -11,7 +12,8 @@ const Layout = ({ itemcount, children }) => {
             <GlobalStyle />
             <div className='layout'>
                 <Header itemcount={itemcount} />
-                <Main path={"Store/Bikes"}>
+                <Main >
+                    {/* path={"Store/Bikes"}> */}
                     {children}
                 </Main>
                 <Footer />
