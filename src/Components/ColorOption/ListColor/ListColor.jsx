@@ -5,8 +5,10 @@ import { ListColorContainer } from './ListColorCss';
 const ListColor = ({ listColor = [], orientation = 'row', onColorChange = (item) => { } }) => {
 
     const [currentColor, setCurrentColor] = useState({});
+    const [ListColor, setListColor] = useState([]);
 
     useEffect(() => {
+        setListColor(listColor);
         setCurrentColor(listColor[0]);
     }, []);
 
@@ -20,7 +22,7 @@ const ListColor = ({ listColor = [], orientation = 'row', onColorChange = (item)
             <p>Color/{currentColor.name}</p>
             <ListColorContainer orientation={orientation}>
                 {
-                    listColor.map((item, index) => {
+                    ListColor.map((item, index) => {
                         return (<ItemColor key={item.name} item={item} onColorChange={onColorSelect} />)
                     })
                 }

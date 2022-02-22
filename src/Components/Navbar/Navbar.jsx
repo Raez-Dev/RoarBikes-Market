@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 import UserWidget from '../UserWidget';
 import CartWidget from '../CartWidget';
 
 
-const index = ({itemcount}) => {
+const index = ({ itemcount }) => {
     return (
         <>
             <nav className="navbar">
@@ -14,17 +15,20 @@ const index = ({itemcount}) => {
                     <div className='navbar-brand-list'>
 
                         <h1 className="navbar-brand">
-                            <b>ROAR</b>BIKES
+                            <NavLink to={`/`}>
+                                <b>ROAR</b>BIKES
+                            </NavLink>
                         </h1>
                         <ul className="navbar-list">
                             <li className="navbar-list-item list">
-                                <a href="/#">Home</a>
+                                <NavLink to={`category/1`}>
+                                    Caliber
+                                </NavLink>
                             </li>
                             <li className="navbar-list-item list">
-                                <a href="/#">Products</a>
-                            </li>
-                            <li className="navbar-list-item list">
-                                <a href="/#">Contact</a>
+                                <NavLink to={`category/2`}>
+                                    Top Fuel
+                                </NavLink>
                             </li>
                         </ul>
                     </div>

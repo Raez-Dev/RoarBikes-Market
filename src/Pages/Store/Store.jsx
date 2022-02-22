@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from 'react'
-//import Bikes from './Bikes/Bikes';
-import ProductDetail from './ProductDetail/ProductDetail';
-import { getProduct } from '../../Services/Product/ProductAPI';
+import React from 'react'
+import { Outlet } from 'react-router-dom';
 
 const Store = () => {
 
-    const [Product, setProduct] = useState()
-
-    useEffect(() => {
-        getProduct.then((product) => {
-            setProduct(product);
-        });
-    }, [])
-
-
     return (
         <>
-            {/* <Bikes />  */}
-            {Product  ? <ProductDetail product={Product} /> : <></>}
+            <Outlet />
         </>
     )
 }

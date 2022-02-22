@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import ItemCount from '../../../Components/ItemCount/ItemCount';
 import {
     ItemProductDiv,
@@ -6,17 +7,18 @@ import {
     NameDescription
 } from './ItemProductCss';
 
-const ItemProduct = ({ name,img, itemStore}) => {
+const ItemProduct = ({ item, itemStore }) => {
 
     return (
         <>
             <ItemProductDiv>
-                <Img src={img.src} alt={img.alt}>
-                </Img>
+                <Link to={`../item/${item.id}`}>
+                    <Img src={item.img.src} alt={item.img.alt} />
+                </Link>
                 <NameDescription>
-                    {name}
+                    {item.name}
                 </NameDescription>
-                <ItemCount itemStore={itemStore}/>
+                <ItemCount itemStore={itemStore} />
             </ItemProductDiv>
         </>
     )

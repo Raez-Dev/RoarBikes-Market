@@ -26,6 +26,10 @@
     font-size: 20px;
 }
 
+.navbar .navbar-brand a {
+    text-decoration: none;
+}
+
 .navbar .navbar-list {
     align-items: center;
     flex-flow: row wrap;

@@ -4,17 +4,16 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Main from './Main/Main';
 import GlobalStyle from './globalStyles';
-import { Component } from 'react/cjs/react.production.min';
+import { Outlet } from 'react-router-dom';
 
-const Layout = ({ itemcount, children }) => {
+const Layout = ({ path, itemcount }) => {
     return (
         <>
             <GlobalStyle />
             <div className='layout'>
                 <Header itemcount={itemcount} />
-                <Main >
-                    {/* path={"Store/Bikes"}> */}
-                    {children}
+                <Main path={path}>
+                    <Outlet />
                 </Main>
                 <Footer />
             </div>

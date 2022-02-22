@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 import ListColor from '../../../Components/ColorOption/ListColor/ListColor';
 import ItemCount from '../../../Components/ItemCount/ItemCount';
 import {
@@ -14,31 +15,21 @@ import {
     ProductName
 } from './ProductDetailsCss';
 
-const ProductDetail = ({ product = {
-    name: '',
-    description: '',
-    price: 0,
-    img: {
-        src: 'https://trek.scene7.com/is/image/TrekBicycleProducts/XCaliber8_22_35069_A_Portrait?$responsive-pjpg$&cache=on,on&wid=1920&hei=1440',
-        alt: 'X-Caliber 8',
-    },
-    variants: [
-        {
-            name: '',
-            color: '',
-            img: ''
-        }
-    ],
-    itemStore: {
-        initial: 0,
-        stock: 0
-    }
-} }) => {
+import { getProduct } from '../../../Services/Product/ProductAPI';
+
+const ProductDetail = () => {
 
     const [CurrentColor, setCurrentColor] = useState({});
+    const [Product, setProduct] = useState()
+    const { id } = useParams();
 
     useEffect(() => {
-        setCurrentColor(product.variants[0]);
+        getProduct(id).then((product) => {
+            console.log(product);
+            setProduct(product);
+            setCurrentColor(product.variants[0]);
+        });
+
     }, [])
 
     const onColorChange = (item) => {
@@ -46,33 +37,39 @@ const ProductDetail = ({ product = {
     }
 
     return (
-        <ItemProductDiv>
-            <BannerContainer>
-                <BannerContainerImg src={CurrentColor.img} alt={CurrentColor.name} />
-            </BannerContainer>
-            <ItemProductDetailsContainer>
+        <>
+            {
+                Product ?
+                    <ItemProductDiv>
+                        <BannerContainer>
+                            <BannerContainerImg src={CurrentColor.img} alt={CurrentColor.name} />
+                        </BannerContainer>
+                        <ItemProductDetailsContainer>
 
-                {
-                    product.span ?
-                        <DetailSpan>
-                            <DetailSpanTag>NUEVA</DetailSpanTag>
-                            <DetailSpanYear>2022</DetailSpanYear>
-                        </DetailSpan>
-                        :
-                        <></>
-                }
-                <ProductName>{product.name}</ProductName>
-                <div>{product.price} €</div>
-                <Hr />
-                <p>{product.description}</p>
+                            {
+                                Product.span ?
+                                    <DetailSpan>
+                                        <DetailSpanTag>NUEVA</DetailSpanTag>
+                                        <DetailSpanYear>2022</DetailSpanYear>
+                                    </DetailSpan>
+                                    :
+                                    <></>
+                            }
+                            <ProductName>{Product.name}</ProductName>
+                            <div>{Product.price} €</div>
+                            <Hr />
+                            <p>{Product.description}</p>
 
-                <ListColor listColor={product.variants} orientation={'row'} onColorChange={onColorChange} />
-                <ItemCountContainer>
-                    <ItemCount itemStore={product.itemStore} />
-                </ItemCountContainer>
+                            <ListColor listColor={Product.variants} orientation={'row'} onColorChange={onColorChange} />
+                            <ItemCountContainer>
+                                <ItemCount itemStore={Product.itemStore} />
+                            </ItemCountContainer>
 
-            </ItemProductDetailsContainer>
-        </ItemProductDiv>
+                        </ItemProductDetailsContainer>
+                    </ItemProductDiv>
+                    : <></>
+            }
+        </>
     )
 }
 

@@ -1,19 +1,42 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
 import SideFilter from '../SideFilter/SideFilter';
 import ListProduct from '../ListProduct/ListProduct';
 import { BikesDiv } from './BikesCss';
-import { getProductList } from '../../../Services/Product/ProductAPI';
+import { getProductList, getProductListByCategory } from '../../../Services/Product/ProductAPI';
 
 const Bikes = () => {
 
   const [ProductList, setProductList] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
-    getProductList
-    .then((response) => {
-      setProductList(response);
-    });
+    if (id) {
+      getProductListByCategory(id)
+        .then((response) => {
+          setProductList(response);
+        });
+    } else {
+      getProductList()
+        .then((response) => {
+          setProductList(response);
+        });
+    }
   }, [])
+
+  useEffect(() => {
+    if (id) {
+      getProductListByCategory(id)
+        .then((response) => {
+          setProductList(response);
+        });
+    } else {
+      getProductList()
+        .then((response) => {
+          setProductList(response);
+        });
+    }
+  }, [id])
 
   return (
     <BikesDiv>
