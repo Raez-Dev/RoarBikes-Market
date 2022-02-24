@@ -7,7 +7,7 @@ import {
     ButtonPlus
 } from './ItemCountCss';
 
-const Index = ({ itemStore = { initial: 0, stock: 0 } }) => {
+const Index = ({ itemStore = { initial: 0, stock: 0 }, endBuy = false, onAddStore = () => { }, onEndPurchase = () => { } }) => {
 
     const [quantity, setQuantity] = useState(0)
     const [EnablePlus, setEnablePlus] = useState(false)
@@ -18,10 +18,10 @@ const Index = ({ itemStore = { initial: 0, stock: 0 } }) => {
 
         setQuantity(itemStore.initial)
 
-        if (quantity <= 1) {
+        if (itemStore.initial <= 1) {
             setEnableLess(true);
         }
-        if (quantity === itemStore.stock) {
+        if (itemStore.initial === itemStore.stock) {
             setEnablePlus(true);
         }
         if (itemStore.stock === 0) {
@@ -63,22 +63,36 @@ const Index = ({ itemStore = { initial: 0, stock: 0 } }) => {
         }
     }
 
-    // const onHandleAddCart = () => {
-    //     //onAddStore(quantity);
-    // }
+    const onHandleAddCart = (e) => {
+        e.preventDefault();
+        onAddStore(quantity);
+    }
+
+    const onHandleEndPurchase = (e) => {
+        e.preventDefault();
+        onEndPurchase();
+    }
 
     return (
         <>
-            <ItemCountDivQ >
-                <ButtonLess onClick={onQuantityChange}
-                    disabled={EnableLess}
-                >-</ButtonLess>
-                <QuantityDiv >{quantity}</QuantityDiv>
-                <ButtonPlus onClick={onQuantityChange}
-                    disabled={EnablePlus}
-                >+</ButtonPlus>
-            </ItemCountDivQ>
-            <AddCartButton disabled={EnableAddCart}>ADD TO CART</AddCartButton>
+            {
+                endBuy ?
+                    <AddCartButton disabled={false} onClick={onHandleEndPurchase} >END PURCHASE</AddCartButton>
+                    :
+                    <>
+                        <ItemCountDivQ >
+                            <ButtonLess onClick={onQuantityChange}
+                                disabled={EnableLess}
+                            >-</ButtonLess>
+                            <QuantityDiv >{quantity}</QuantityDiv>
+                            <ButtonPlus onClick={onQuantityChange}
+                                disabled={EnablePlus}
+                            >+</ButtonPlus>
+                        </ItemCountDivQ>
+                        <AddCartButton disabled={EnableAddCart} onClick={onHandleAddCart} >ADD TO CART</AddCartButton>
+                    </>
+            }
+
         </>
     )
 }

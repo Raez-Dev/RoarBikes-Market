@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ListColor from '../../../Components/ColorOption/ListColor/ListColor';
 import ItemCount from '../../../Components/ItemCount/ItemCount';
 import {
@@ -20,12 +20,14 @@ import { getProduct } from '../../../Services/Product/ProductAPI';
 const ProductDetail = () => {
 
     const [CurrentColor, setCurrentColor] = useState({});
-    const [Product, setProduct] = useState()
+    const [Product, setProduct] = useState();
+    const [Quantity, setQuantity] = useState(0);
+    const [EndBuy, setEndBuy] = useState(false);
     const { id } = useParams();
+    const navigate = useNavigate;
 
     useEffect(() => {
         getProduct(id).then((product) => {
-            console.log(product);
             setProduct(product);
             setCurrentColor(product.variants[0]);
         });
@@ -34,6 +36,15 @@ const ProductDetail = () => {
 
     const onColorChange = (item) => {
         setCurrentColor(item);
+    }
+
+    const onAddStore = (quantity) => {
+        setQuantity(quantity);
+        setEndBuy(true);
+    }
+
+    const onEndPurchase = () => {        
+        window.location.href ='../cart';
     }
 
     return (
@@ -62,7 +73,7 @@ const ProductDetail = () => {
 
                             <ListColor listColor={Product.variants} orientation={'row'} onColorChange={onColorChange} />
                             <ItemCountContainer>
-                                <ItemCount itemStore={Product.itemStore} />
+                                <ItemCount itemStore={Product.itemStore} onAddStore={onAddStore} onEndPurchase={onEndPurchase} endBuy={EndBuy} />
                             </ItemCountContainer>
 
                         </ItemProductDetailsContainer>
