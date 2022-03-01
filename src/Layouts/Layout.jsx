@@ -6,12 +6,12 @@ import Main from './Main/Main';
 import GlobalStyle from './globalStyles';
 import { Outlet } from 'react-router-dom';
 
-const Layout = ({ path, itemcount }) => {
+const Layout = ({ path }) => {
     return (
         <>
             <GlobalStyle />
             <div className='layout'>
-                <Header itemcount={itemcount} />
+                <Header/>
                 <Main path={path}>
                     <Outlet />
                 </Main>

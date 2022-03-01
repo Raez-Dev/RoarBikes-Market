@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 import UserWidget from '../UserWidget';
 import CartWidget from '../CartWidget';
+import { CartContext } from '../../Context/CartContext';
 
 
-const index = ({ itemcount }) => {
+const Navbar = ({ itemcount }) => {
+    const { CartSize } = useContext(CartContext);
+
     return (
         <>
             <nav className="navbar">
@@ -35,7 +38,7 @@ const index = ({ itemcount }) => {
 
                     <ul className="navbar-list">
                         <li className="navbar-list-item options">
-                            <CartWidget itemcount={itemcount} />
+                            <CartWidget itemcount={CartSize} />
                         </li>
                         <li className="navbar-list-item options">
                             <UserWidget />
@@ -48,4 +51,4 @@ const index = ({ itemcount }) => {
     )
 }
 
-export default index
+export default Navbar

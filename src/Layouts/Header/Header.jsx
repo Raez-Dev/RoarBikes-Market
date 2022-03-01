@@ -10,10 +10,10 @@ const Div = styled.header`
     width: 100%; 
 `;
 
-const Header = ({ itemcount }) => {
+const Header = () => {
     return (
         <Div>
-            <Navbar itemcount={itemcount} ></Navbar>
+            <Navbar></Navbar>
         </Div>
     )
 }

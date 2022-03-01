@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
+import { CartContext } from "../../../Context/CartContext";
 import ListColor from '../../../Components/ColorOption/ListColor/ListColor';
 import ItemCount from '../../../Components/ItemCount/ItemCount';
 import {
@@ -24,7 +25,8 @@ const ProductDetail = () => {
     const [Quantity, setQuantity] = useState(0);
     const [EndBuy, setEndBuy] = useState(false);
     const { id } = useParams();
-    const navigate = useNavigate;
+    const navigate = useNavigate();
+    const { isInCart, addItem } = useContext(CartContext);
 
     useEffect(() => {
         getProduct(id).then((product) => {
@@ -43,8 +45,21 @@ const ProductDetail = () => {
         setEndBuy(true);
     }
 
-    const onEndPurchase = () => {        
-        window.location.href ='../cart';
+    const onEndPurchase = () => {
+
+        const product = {
+            idProduct: Product.id,
+            name: Product.name,
+            price: Product.price,
+            quantity: Quantity,
+            img: Product.img
+        };
+
+        const response = isInCart(Product.id);
+        if (response.IsSuccess === false) {
+            addItem(product);
+            navigate('../cart');
+        }
     }
 
     return (
