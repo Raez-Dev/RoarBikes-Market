@@ -7,7 +7,7 @@ const CartContainer = styled.div `
 const CardContainer = styled.div `  
     display:flex;
     flex-flow:row nowrap;  
-    margin-bottom:10px;
+    margin-bottom:5px;
 `;
 
 const ImgContainer = styled.div `      
@@ -22,8 +22,7 @@ const ImgProduct = styled.img `
 `;
 const DetailsContainer = styled.div `     
     box-shadow:  0 0 2px 0.5px #707070; 
-    padding:10px;
-    margin-left:10px;
+    padding:10px;    
     min-width:250px;
 `;
 const TitleProduct = styled.h2 `
@@ -35,6 +34,19 @@ const PriceProduct = styled.p `
 const QuantityProduct = styled.p `
     font-size:16px;
 `;
+const OptionsContainer = styled.div `    
+    box-shadow:  0 0 2px 0.5px #707070; 
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content:center;
+    padding:10px;   
+    min-width:auto;
+`;
+const OptionButton = styled.button `
+    background-color:#FFF;
+    border-color:#FFD200;
+    padding: 5px 10px;
+    font-size: 12px;
+`;
 
-
-export { CartContainer, CardContainer, ImgContainer, ImgProduct, DetailsContainer, TitleProduct, PriceProduct, QuantityProduct }
+export { CartContainer, CardContainer, ImgContainer, ImgProduct, DetailsContainer, TitleProduct, PriceProduct, QuantityProduct, OptionsContainer, OptionButton }

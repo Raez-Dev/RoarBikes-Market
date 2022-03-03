@@ -32,6 +32,10 @@ const ProductDetail = () => {
         getProduct(id).then((product) => {
             setProduct(product);
             setCurrentColor(product.variants[0]);
+            const response = isInCart(product.id);
+            if (response.IsSuccess === true) {
+                setEndBuy(true);
+            }
         });
 
     }, [])
@@ -58,6 +62,8 @@ const ProductDetail = () => {
         const response = isInCart(Product.id);
         if (response.IsSuccess === false) {
             addItem(product);
+            navigate('../cart');
+        } else {
             navigate('../cart');
         }
     }
