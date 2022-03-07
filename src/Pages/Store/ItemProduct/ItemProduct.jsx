@@ -9,11 +9,13 @@ import {
 
 const ItemProduct = ({ item, itemStore }) => {
 
+    
+
     return (
         <>
             <ItemProductDiv>
                 <Link to={`../item/${item.id}`}>
-                    <Img src={item.img.src} alt={item.img.alt} />
+                    <Img src={item.imgVariants[0].img.src} alt={item.imgVariants[0].img.alt} />
                 </Link>
                 <NameDescription>
                     {item.name}

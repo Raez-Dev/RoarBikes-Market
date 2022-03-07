@@ -31,7 +31,7 @@ const ProductDetail = () => {
     useEffect(() => {
         getProduct(id).then((product) => {
             setProduct(product);
-            setCurrentColor(product.variants[0]);
+            setCurrentColor(product.imgVariants[0]);
             const response = isInCart(product.id);
             if (response.IsSuccess === true) {
                 setEndBuy(true);
@@ -74,7 +74,7 @@ const ProductDetail = () => {
                 Product ?
                     <ItemProductDiv>
                         <BannerContainer>
-                            <BannerContainerImg src={CurrentColor.img} alt={CurrentColor.name} />
+                            <BannerContainerImg src={CurrentColor.img ? CurrentColor.img.src : '#'} alt={CurrentColor.img ? CurrentColor.img.alt : "#"} />
                         </BannerContainer>
                         <ItemProductDetailsContainer>
 
@@ -92,7 +92,7 @@ const ProductDetail = () => {
                             <Hr />
                             <p>{Product.description}</p>
 
-                            <ListColor listColor={Product.variants} orientation={'row'} onColorChange={onColorChange} />
+                            <ListColor listColor={Product.imgVariants} orientation={'row'} onColorChange={onColorChange} />
                             <ItemCountContainer>
                                 <ItemCount itemStore={Product.itemStore} onAddStore={onAddStore} onEndPurchase={onEndPurchase} endBuy={EndBuy} />
                             </ItemCountContainer>
