@@ -16,8 +16,6 @@ const Cart = () => {
 
     const onHandleReturn = (e) => {
         e.preventDefault();
-
-
         navigate('/');
     }
     return (
@@ -28,7 +26,7 @@ const Cart = () => {
                         return (
                             <CardContainer key={index}>
                                 <ImgContainer>
-                                    <ImgProduct src={item.img.src} alt={item.img.alt} />
+                                    <ImgProduct src={item.imgVariants[0].img.src} alt={item.imgVariants[0].img.alt} />
                                 </ImgContainer>
                                 <DetailsContainer>
                                     <TitleProduct>{item.name}</TitleProduct>
