@@ -56,7 +56,8 @@ const ProductDetail = () => {
             name: Product.name,
             price: Product.price,
             quantity: Quantity,
-            imgVariants: Product.imgVariants
+            imgVariants: Product.imgVariants,
+            product:Product
         };
 
         const response = isInCart(Product.id);

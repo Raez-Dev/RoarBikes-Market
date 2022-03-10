@@ -8,7 +8,7 @@ import { CartContext } from '../../Context/CartContext';
 
 
 const Navbar = () => {
-    const { CartList,CartSize } = useContext(CartContext);
+    const { CartList, CartSize } = useContext(CartContext);
 
     return (
         <>
@@ -38,9 +38,11 @@ const Navbar = () => {
 
                     <ul className="navbar-list">
                         <li className="navbar-list-item options">
-                            <CartWidget itemcount={CartSize > 0 ? CartList.map((item, index) => {
-                                return item.quantity;
-                            }).reduce((total, qty) => total + qty) : 0} />
+                            <NavLink to={`cart`}>                                
+                                <CartWidget itemcount={CartSize > 0 ? CartList.map((item, index) => {
+                                    return item.quantity;
+                                }).reduce((total, qty) => total + qty) : 0} />
+                            </NavLink>
                         </li>
                         <li className="navbar-list-item options">
                             <UserWidget />

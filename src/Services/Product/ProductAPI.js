@@ -1,4 +1,4 @@
-import { db } from "../../Firebase/config";
+import Config from "../../Firebase/config";
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 
 // const ProductList = [{
@@ -45,7 +45,7 @@ import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 //     },
 //     variants: [{
 //         name: 'Navy Smoke to Alpine Blue Fade',
-//         color: '#006db3',
+//         color: '#006Config.db3',
 //         img: 'https://trek.scene7.com/is/image/TrekBicycleProducts/Supercaliber99XX1AXS_22_35145_A_Primary?$responsive-pjpg$&cache=on,on&wid=1920&hei=1440'
 //     }, {
 //         name: 'Matte Raw Carbon/Gloss Trek Black',
@@ -124,7 +124,7 @@ import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 // ];
 
 const getProductList = async() => {
-    const data = collection(db, "Products");
+    const data = collection(Config.db, "Products");
     const coll = await getDocs(data);
 
     const ProductList = coll.docs.map((doc) => {
@@ -135,7 +135,7 @@ const getProductList = async() => {
 
 };
 const getProduct = async(id) => {
-    const data = doc(db, "Products", id);
+    const data = doc(Config.db, "Products", id);
     const docGet = await getDoc(data);
 
     return { id: docGet.id, ...docGet.data() };

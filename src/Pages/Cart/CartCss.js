@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 const CartContainer = styled.div `  
-  margin-top:25px;
+    display:flex;
+    flex-flow:row nowrap;  
+    margin-top:25px;
 `;
 
 const CardContainer = styled.div `  
@@ -49,4 +51,39 @@ const OptionButton = styled.button `
     font-size: 12px;
 `;
 
-export { CartContainer, CardContainer, ImgContainer, ImgProduct, DetailsContainer, TitleProduct, PriceProduct, QuantityProduct, OptionsContainer, OptionButton }
+const FormButton = styled.button `
+    background-color:#FFD200;
+    border-color:#FFD200;
+    color:#FFFFFF;
+    padding: 5px 10px;
+    font-size: 12px;
+    width:auto;
+`;
+
+const FormContainer = styled.form `
+    display:flex;
+    flex-direction:column;
+    margin-right:5px;
+`;
+
+const InputForm = styled.input.attrs({ type: 'text' })
+`  
+    padding:5px 5px;    
+    width:200px;
+    margin-bottom:5px;
+`;
+export {
+    CartContainer,
+    CardContainer,
+    ImgContainer,
+    ImgProduct,
+    DetailsContainer,
+    TitleProduct,
+    PriceProduct,
+    QuantityProduct,
+    OptionsContainer,
+    OptionButton,
+    FormContainer,
+    InputForm,
+    FormButton
+}

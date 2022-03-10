@@ -1,23 +1,26 @@
 .cartwidget {
     display: flex;
     flex-flow: row nowrap;
-    max-width: 50px;
+    width: 40px;
     max-height: 40px;
+    padding: 0;
+    position: relative;
 }
 
 .cartwidget .cartwidget-itemcount {
-    align-items: center;
+    align-self: center;
     background-color: #FFD200;
     border-radius: 15px;
-    color: #FFFFFF;
+    color: #000;
     display: flex;
+    font-size: 30px;
     justify-content: center;
-    position: relative;
+    position: absolute;
     text-align: center;
     top: 0;
-    left: -10px;
-    height: 15px;
-    width: 15px;
+    right: 0;
+    height: 18px;
+    width: 18px;
 }
 
 .cartwidget-itemcount p {
